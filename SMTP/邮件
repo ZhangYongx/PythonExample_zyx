@@ -1,0 +1,44 @@
+# -*- coding: utf-8 -*-
+
+from email import encoders
+from email.header import Header
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+from email.mime.base import MIMEBase
+from email.utils import parseaddr,formataddr
+import smtplib
+
+def _format_addr(s):
+    name, addr = parseaddr(s)
+    return formataddr(( \
+        Header(name,'utf-8').encode(),\
+        addr.encode('utf-8') if isinstance(addr,unicode) else addr))
+
+from_addr = raw_input("from: ")
+password = raw_input("Passwd: ")
+to_addr = raw_input("To:").split(',')
+smtp_server = raw_input("SMTP Server: ")
+smtp_port = '25'
+
+
+#邮件内容。html 和plain
+msg = MIMEText('<html><body><h1>Hellp</h1>'+
+               '<p>send by <a href="http://www.baidu.com">baidu</a></p>' +
+               '</body></html>','html','utf-8')
+
+
+#显示发送人的信息
+msg['From'] = _format_addr(u'Python爱好者 <%s>' % from_addr)
+#显示发送人的信息
+msg['To'] = _format_addr(u'管理员 <%s>' % to_addr)
+#显示邮件主题
+msg['Subject'] = Header(u'来自星星的问候','utf-8').encode()
+
+
+#server = smtplib.SMTP(smtp_server,smtp_port)
+#启动ssl加密连接
+server = smtplib.SMTP_SSL(smtp_server)
+server.set_debuglevel(1)
+server.login(from_addr,password)
+server.sendmail(from_addr,to_addr,msg.as_string())
+server.quit()
