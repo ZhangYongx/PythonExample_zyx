@@ -1,0 +1,31 @@
+#使用递归找出字符的所有子集
+def p(s):
+    print s[0] ,
+    c = 1
+    if len(s) == c:return
+    while len(s) > c:
+        for i in s[c:]:
+            out_s = s[:c] + i
+            print out_s ,
+        c +=1
+    p(s[1:])
+
+s = raw_input(">")
+p(s)
+
+
+
+#法二,此办法有错误
+def getRealSubSet(fromList,toList):
+    if(len(fromList) <= 1):
+        return
+    for id in range(len(fromList)):
+        arr = [i for i in fromList if i != fromList[id]]
+        getRealSubSet(arr,toList)
+        #print arr
+        if(toList.count(arr) == 0):
+            toList.append(arr)
+li = []
+getRealSubSet([1,2,3,4],li)
+li.sort()
+print li
