@@ -1,2 +1,6 @@
 # PythonExample_zyx
-例子
+
+'''python
+print "Python"
+
+'''
