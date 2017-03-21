@@ -15,17 +15,15 @@ p(s)
 
 
 
-#法二,此办法有错误
-def getRealSubSet(fromList,toList):
-    if(len(fromList) <= 1):
-        return
-    for id in range(len(fromList)):
-        arr = [i for i in fromList if i != fromList[id]]
-        getRealSubSet(arr,toList)
-        #print arr
-        if(toList.count(arr) == 0):
-            toList.append(arr)
-li = []
-getRealSubSet([1,2,3,4],li)
-li.sort()
-print li
+#法二
+# -*- coding: utf-8 -*-
+def p(s_arr):
+    if len(s_arr) == 1:
+        return 1
+    for i, item_i in enumerate(s_arr):
+        print "".join(s_arr[:i+1]),
+    p(s_arr[1:])
+
+if __name__ == "__main__":
+    strs = raw_input("input> ")
+    p((list(strs)))
