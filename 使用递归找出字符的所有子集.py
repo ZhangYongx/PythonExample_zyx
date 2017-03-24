@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 #使用递归找出字符的所有子集
 def p(s):
     print s[0] ,
