@@ -10,6 +10,7 @@ def pr(n):
     if n >1:
         yield n
 
+<<<<<<< HEAD
 print list(pr(20))
 
 
@@ -50,3 +51,6 @@ def fj(num):
                 # else:
                 print i,
                 break       #通过此 break 跳出 if 语句，然后继续 for 的迭代
+=======
+print list(pr(2000))
+>>>>>>> 27d52345a365e80362e1d14baa863a13efde3618
