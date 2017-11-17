@@ -42,3 +42,13 @@ num_to_ip = socket.inet_ntoa(struct.pack('I',socket.htonl(int_ip)))
 ip_to_num = socket.ntohl(struct.unpack("I",socket.inet_aton(str(ip)))[0])
 
 
+
+import struct
+import socket
+# 字符串ip 转 长整形int
+def ip_to_int(ip):
+    return struct.unpack('!I', socket.inet_aton(ip))[0]
+	
+# 长整形int 转 字符串ip	
+def int_to_ip(ip_int):
+    return socket.inet_ntoa(struct.pack('!L', ip_int))
